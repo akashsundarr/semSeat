@@ -4,14 +4,22 @@ import pool from '../db/connection.js';
 const router = express.Router();
 
 // Route to insert a new student
+// In the '/student' route
+
 router.post('/student', async (req, res) => {
-  const { student_id, name, batch, semester } = req.body;
-  if (!student_id || !name || !batch || !semester) {
+  // 1. Add dept_id to the destructuring
+  const { student_id, name, batch, semester, dept_id } = req.body;
+  
+  // 2. Update the validation
+  if (!student_id || !name || !batch || !semester || !dept_id) {
     return res.status(400).json({ error: 'All fields are required.' });
   }
+  
   try {
-    const query = 'INSERT INTO Students (student_id, name, batch, semester) VALUES (?, ?, ?, ?)';
-    await pool.query(query, [student_id, name, batch, semester]);
+    // 3. Update the SQL query
+    const query = 'INSERT INTO Students (student_id, name, batch, semester, dept_id) VALUES (?, ?, ?, ?, ?)';
+    // 4. Add dept_id to the query parameters
+    await pool.query(query, [student_id, name, batch, semester, dept_id]);
     res.status(201).json({ message: 'Student inserted successfully!' });
   } catch (err) {
     res.status(500).json({ error: err.message });
