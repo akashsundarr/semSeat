@@ -1,42 +1,4 @@
 
-```
-semSeat
-├─ backend
-│  ├─ .env
-│  ├─ db
-│  │  └─ connection.js
-│  ├─ package-lock.json
-│  ├─ package.json
-│  ├─ routes
-│  │  ├─ allocations.js
-│  │  ├─ info.js
-│  │  ├─ insertData.js
-│  │  └─ management.js
-│  └─ server.js
-└─ frontend
-   ├─ eslint.config.js
-   ├─ index.html
-   ├─ package-lock.json
-   ├─ package.json
-   ├─ public
-   ├─ README.md
-   ├─ src
-   │  ├─ App.jsx
-   │  ├─ components
-   │  │  └─ Navbar.jsx
-   │  ├─ index.css
-   │  ├─ main.jsx
-   │  ├─ pages
-   │  │  ├─ Allocation.jsx
-   │  │  ├─ Dashboard.jsx
-   │  │  └─ management
-   │  │     ├─ ExamSeries.jsx
-   │  │     └─ ScheduleExam.jsx
-   │  └─ services
-   │     └─ api.js
-   └─ vite.config.js
-
-```
 
 
 Database Name: seating_allocation_db
@@ -220,3 +182,61 @@ INSERT INTO scheduledexams (exam_id, series_id, subject_id, exam_date, start_tim
 
 -- S7 Exams (Series 3)
 (30, 3, 302, '2025-11-25', '14:00:00', '17:00:00'); -- EC401 (S7)
+```
+semSeat
+├─ backend
+│  ├─ .env
+│  ├─ db
+│  │  └─ connection.js
+│  ├─ package-lock.json
+│  ├─ package.json
+│  ├─ routes
+│  │  ├─ allocations.js
+│  │  ├─ info.js
+│  │  ├─ insertData.js
+│  │  ├─ management.js
+│  │  └─ stats.js
+│  └─ server.js
+├─ client
+│  ├─ eslint.config.js
+│  ├─ index.html
+│  ├─ package-lock.json
+│  ├─ package.json
+│  ├─ public
+│  │  ├─ favicon.ico
+│  │  └─ vite.svg
+│  ├─ README.md
+│  ├─ src
+│  │  ├─ api
+│  │  │  ├─ allocationsApi.js
+│  │  │  ├─ axiosInstance.js
+│  │  │  ├─ classroomApi.js
+│  │  │  ├─ departmentApi.js
+│  │  │  ├─ examSeriesApi.js
+│  │  │  ├─ infoApi.js
+│  │  │  ├─ managementApi.js
+│  │  │  ├─ scheduledExamApi.js
+│  │  │  └─ studentApi.js
+│  │  ├─ App.jsx
+│  │  ├─ assets
+│  │  │  └─ react.svg
+│  │  ├─ components
+│  │  │  ├─ BulkImport.jsx
+│  │  │  ├─ ConfirmationModal.jsx
+│  │  │  └─ ManagementForm.jsx
+│  │  ├─ index.css
+│  │  ├─ main.jsx
+│  │  └─ pages
+│  │     ├─ ClassroomManager.jsx
+│  │     ├─ Dashboard.jsx
+│  │     ├─ DepartmentManager.jsx
+│  │     ├─ ExamManagement.jsx
+│  │     ├─ Management.jsx
+│  │     ├─ StudentManager.jsx
+│  │     ├─ Timetable.jsx
+│  │     └─ ViewAllocation.jsx
+│  └─ vite.config.js
+├─ README.md
+└─ students_data.csv
+
+```

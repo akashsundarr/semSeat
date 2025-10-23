@@ -3,9 +3,20 @@ import ManagementForm from '../components/ManagementForm';
 import * as api from '../api/managementApi'; // All functions are now in the 'api' object
 import { getDepartments } from '../api/infoApi';
 
+// Notification component
+const Notification = ({ message, type }) => {
+  if (!message) return null;
+  const baseClasses = "p-3 rounded-md my-4 text-sm";
+  const typeClasses =
+    type === 'success' ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800";
+  return <div className={`${baseClasses} ${typeClasses}`}>{message}</div>;
+};
+
 function ManagementPage() {
-   const [departments, setDepartments] = useState([]);
-   useEffect(() => {
+  const [departments, setDepartments] = useState([]);
+  const [notification, setNotification] = useState({ message: '', type: '' });
+
+  useEffect(() => {
     const fetchDepts = async () => {
       try {
         const data = await getDepartments();
@@ -25,8 +36,7 @@ function ManagementPage() {
   const forms = [
     { 
       title: 'Student', 
-      // --- THIS IS THE FIX ---
-      onSubmit: api.addStudent, // Changed from managementApi to api
+      onSubmit: api.addStudent,
       fields: [
         { name: 'student_id', label: 'Student ID', type: 'text', placeholder: 'e.g., CEC24CS001' },
         { name: 'name', label: 'Full Name', type: 'text', placeholder: 'Akash Sundar' },
@@ -56,13 +66,21 @@ function ManagementPage() {
   return (
     <div className="container mx-auto p-4 md:p-8">
       <h1 className="text-3xl font-bold text-gray-800 mb-8">Data Management</h1>
+      <Notification message={notification.message} type={notification.type} />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {forms.map(form => (
           <ManagementForm
             key={form.title}
             title={form.title}
             fields={form.fields}
-            onSubmit={form.onSubmit}
+            onSubmit={async (data) => {
+              try {
+                const result = await form.onSubmit(data);
+                setNotification({ message: result.message, type: 'success' });
+              } catch (error) {
+                setNotification({ message: error.message, type: 'error' });
+              }
+            }}
           />
         ))}
       </div>
