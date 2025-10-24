@@ -85,7 +85,6 @@ Clone the repo:
 git clone https://github.com/akashsundarr/semSeat.git
 cd semSeat
 
-
 Configure database:
 
 Create a database named seating_allocation_db.
